@@ -34,11 +34,11 @@
 
 // Variables
 static volatile bool i2c_running = false;
-static volatile bool drv_handshake_complete = false;
+// static volatile bool drv_handshake_complete = false;
 
 // Private functions
 static void terminal_cmd_doublepulse(int argc, const char** argv);
-static void hw_TFSVESC_set_hardware_current_limits(void);
+// static void hw_TFSVESC_set_hardware_current_limits(void);
 
 // I2C configuration
 static const I2CConfig i2cfg = {
@@ -137,7 +137,7 @@ void hw_init_gpio(void) {
 		terminal_cmd_doublepulse);			
 		
 		
-	hw_TFSVESC_reset_faults(); // Handshake with hardware protection
+	// hw_TFSVESC_reset_faults(); // Handshake with hardware protection
 }
 
 void hw_setup_adc_channels(void) {
@@ -289,6 +289,7 @@ float hw_TFSVESC_get_temp(void) {
 	return res;
 }
 
+/*
 bool hw_TFSVESC_hardware_handshake(void) {	  	
 	uint8_t rxb[1];	
 		
@@ -323,11 +324,13 @@ bool hw_TFSVESC_hardware_handshake(void) {
 	
 	return true;		
 }
+*/
 
 //bool hw_TFSVESC_drv_fault_check(void) {
 //	return (palReadPad(GPIOB, 12) || !drv_handshake_complete);	
 //}
 
+/*
 void hw_TFSVESC_reset_faults(void) {		
 	// Send reset command to logger, needs to wait for the i2c to be setup by the imu driver	
 	if(imu_startup_done()) {
@@ -350,7 +353,9 @@ void hw_TFSVESC_reset_faults(void) {
 		}
 	}
 }
+*/
 
+/*
 void hw_TFSVESC_aux(bool enable){
 	static int state = false; // only send changes to attiny1616 to avoid hogging the bus
 	
@@ -374,7 +379,9 @@ void hw_TFSVESC_aux(bool enable){
 		}	
 	}			
 }
+*/
 
+/*
 static void hw_TFSVESC_set_hardware_current_limits(void){	
 	
 	uint8_t txb[2];	
@@ -405,6 +412,7 @@ static void hw_TFSVESC_set_hardware_current_limits(void){
 		}			
 	}		
 }
+*/
 
 
 static void terminal_cmd_doublepulse(int argc, const char** argv)

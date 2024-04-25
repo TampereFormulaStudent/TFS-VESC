@@ -101,8 +101,8 @@
 #define LED_RED_OFF()			palClearPad(LED_RED_GPIO, LED_RED_PIN)
 
 // Aux - TCKE812NA,RF - Aux output controlled by I2C
-#define AUX_ON()				hw_TFSVESC_aux(1)
-#define AUX_OFF()				hw_TFSVESC_aux(0)
+//#define AUX_ON()				hw_TFSVESC_aux(1)
+//#define AUX_OFF()				hw_TFSVESC_aux(0)
 
 // Phase filter
 //#define PHASE_FILTER_OFF()		palSetPad(GPIOC, 9); palSetPad(GPIOC, 13); palSetPad(GPIOC, 14)
@@ -193,7 +193,7 @@
 
 
 // Hardware protection
-#define HW_RESET_DRV_FAULTS()	hw_TFSVESC_reset_faults()
+//#define HW_RESET_DRV_FAULTS()	hw_TFSVESC_reset_faults()
 #define ENABLE_GATE()			palClearPad(GPIOB, 12)
 #define DISABLE_GATE()			palSetPad(GPIOB, 12)
 //#define IS_DRV_FAULT()			hw_TFSVESC_drv_fault_check() 
@@ -263,9 +263,9 @@
 
 // HW-specific functions
 float hw_TFSVESC_get_temp(void);
-void hw_TFSVESC_reset_faults(void);
-bool hw_TFSVESC_hardware_handshake(void);
-bool hw_TFSVESC_drv_fault_check(void);
-void hw_TFSVESC_aux(bool);
+//void hw_TFSVESC_reset_faults(void);
+//bool hw_TFSVESC_hardware_handshake(void);
+//bool hw_TFSVESC_drv_fault_check(void);
+//void hw_TFSVESC_aux(bool);
 
 #endif /* HW_TFSVESC_V1_CORE_H_ */
