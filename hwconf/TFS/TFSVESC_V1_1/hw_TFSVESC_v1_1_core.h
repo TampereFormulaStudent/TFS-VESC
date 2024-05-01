@@ -21,7 +21,7 @@
 #define HW_TFSVESC_V1_1_CORE_H_
 
 #ifdef HWTFSVESC_V1_1
-  #define HW_NAME					"TFSVESC V1.1"
+  #define HW_NAME					"TFSVESC_V1_1"
 #else
   #error "Must define hardware type"
 #endif
@@ -64,8 +64,8 @@
 //#define HW_SAMPLE_SHUTDOWN()	hw_sample_shutdown_button()
 
 // Hold shutdown pin early to wake up on short pulses
-//#define HW_EARLY_INIT()			palSetPadMode(HW_SHUTDOWN_GPIO, HW_SHUTDOWN_PIN, PAL_MODE_OUTPUT_PUSHPULL); \
-								HW_SHUTDOWN_HOLD_ON();
+//#define HW_EARLY_INIT()			palSetPadMode(HW_SHUTDOWN_GPIO, HW_SHUTDOWN_PIN, PAL_MODE_OUTPUT_PUSHPULL);
+//								HW_SHUTDOWN_HOLD_ON();
 
 // Sensor port voltage control
 //#define SENSOR_VOLTAGE_GPIO		GPIOC
@@ -290,7 +290,7 @@
 #define HW_LIM_TEMP_FET			-40.0, 110.0
 
 // HW-specific functions
-bool hw_sample_shutdown_button(void);
+//bool hw_sample_shutdown_button(void);
 float hwTFSVESC_V1_1_get_temp(void);
 
 #endif /* HW_TFSVESC_V1_1_CORE_H_ */

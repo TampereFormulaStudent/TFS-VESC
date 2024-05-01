@@ -27,7 +27,7 @@
 // Variables
 static volatile bool i2c_running = false;
 static mutex_t shutdown_mutex;
-static float bt_diff = 0.0;
+//static float bt_diff = 0.0;
 
 // I2C configuration
 static const I2CConfig i2cfg = {
@@ -80,28 +80,28 @@ void hw_init_gpio(void) {
 	palSetPadMode(HW_HALL_ENC_GPIO3, HW_HALL_ENC_PIN3, PAL_MODE_INPUT_PULLUP);
 
 	// Phase filters
-	palSetPadMode(PHASE_FILTER_GPIO, PHASE_FILTER_PIN,
-			PAL_MODE_OUTPUT_PUSHPULL |
-			PAL_STM32_OSPEED_HIGHEST);
-	PHASE_FILTER_OFF();
+	//palSetPadMode(PHASE_FILTER_GPIO, PHASE_FILTER_PIN,
+	//		PAL_MODE_OUTPUT_PUSHPULL |
+	//		PAL_STM32_OSPEED_HIGHEST);
+	//PHASE_FILTER_OFF();
 
 	// Current filter
-	palSetPadMode(GPIOD, 2,
-			PAL_MODE_OUTPUT_PUSHPULL |
-			PAL_STM32_OSPEED_HIGHEST);
+	//palSetPadMode(GPIOD, 2,
+	//		PAL_MODE_OUTPUT_PUSHPULL |
+	//		PAL_STM32_OSPEED_HIGHEST);
 
-	CURRENT_FILTER_OFF();
+	//CURRENT_FILTER_OFF();
 
 	// AUX pin
-	AUX_OFF();
-	palSetPadMode(AUX_GPIO, AUX_PIN,
-			PAL_MODE_OUTPUT_PUSHPULL |
-			PAL_STM32_OSPEED_HIGHEST);
+	//AUX_OFF();
+	//palSetPadMode(AUX_GPIO, AUX_PIN,
+	//		PAL_MODE_OUTPUT_PUSHPULL |
+	//		PAL_STM32_OSPEED_HIGHEST);
 
 	// Sensor port voltage
-	SENSOR_PORT_3V3();
-	palSetPadMode(SENSOR_VOLTAGE_GPIO, SENSOR_VOLTAGE_PIN,
-			PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_HIGHEST);
+	//SENSOR_PORT_3V3();
+	//palSetPadMode(SENSOR_VOLTAGE_GPIO, SENSOR_VOLTAGE_PIN,
+	//		PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_HIGHEST);
 
 	// ADC Pins
 	palSetPadMode(GPIOA, 0, PAL_MODE_INPUT_ANALOG);
@@ -191,7 +191,6 @@ void hw_stop_i2c(void) {
 		i2c_running = false;
 
 	}
-
 	i2cReleaseBus(&HW_I2C_DEV);
 }
 
@@ -252,6 +251,7 @@ void hw_try_restore_i2c(void) {
 	}
 }
 
+/*
 bool hw_sample_shutdown_button(void) {
 	chMtxLock(&shutdown_mutex);
 
@@ -273,8 +273,9 @@ bool hw_sample_shutdown_button(void) {
 
 	return (bt_diff > 0.12);
 }
+*/
 
-float hw75_300_get_temp(void) {
+float hwTFSVESC_V1_1_get_temp(void) {
 	float t1 = (1.0 / ((logf(NTC_RES(ADC_Value[ADC_IND_TEMP_MOS]) / 10000.0) / 3380.0) + (1.0 / 298.15)) - 273.15);
 	float t2 = (1.0 / ((logf(NTC_RES(ADC_Value[ADC_IND_TEMP_MOS_2]) / 10000.0) / 3380.0) + (1.0 / 298.15)) - 273.15);
 	float t3 = (1.0 / ((logf(NTC_RES(ADC_Value[ADC_IND_TEMP_MOS_3]) / 10000.0) / 3380.0) + (1.0 / 298.15)) - 273.15);
